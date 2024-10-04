@@ -34,7 +34,8 @@ Vue.createApp({
                 this.playerHealth = 0
                 this.gameEnded = true
                 this.winner = 'MONSTER'
-            }
+            } else if (this.playerHealth >= 100)
+                this.playerHealth = 100
             return { width: this.playerHealth + '%'}
         }
     },
