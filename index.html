@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monster Slayer</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Sixtyfour+Convergence&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Monster Slayer</h1>
+    </header>
+    <div id="game">
+      <section id="monster" class="container">
+        <h2>Monster Health</h2>
+        <div class="healthbar">
+          <div class="healthbar__value" :style="monsterBarStyles"></div>
+        </div>
+      </section>
+      <section id="player" class="container">
+        <h2>Your Health</h2>
+        <div class="healthbar">
+          <div class="healthbar__value" :style="playerBarStyles"></div>
+        </div>
+      </section>
+      <div v-if="gameEnded">
+        <div class="alert">Game Over<br>{{ winner }} wins!</div>
+        <button class="restart" @click="restart">PLAY AGAIN</button>
+      </div>
+      <div v-else>
+        <section id="controls" class="container">
+          <button @click="attackMonster">ATTACK</button>
+          <button @click="specialAttack" :disabled="!specialAttackAvailable">SPECIAL ATTACK</button>
+          <button @click="heal" :disabled="!specialAttackAvailable">HEAL</button>
+          <button @click="surrender">SURRENDER</button>
+        </section>
+        <section v-if="logs.length > 0" id="log" class="container">
+          <h2>Battle Log</h2>
+          <ul>
+            <li v-for="log in logs" :key="log">{{ log }}</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
