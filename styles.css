@@ -4,7 +4,7 @@
 
 html {
   font-family: 'Jost', sans-serif;
-  background-image: url('/assets/background.jpg');
+  background-image: url('/assets/images/background.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -157,7 +157,7 @@ button:disabled {
 #log {
   background-color: #fff;
   color: #000;
-  background-image: url('/assets/blood-splatter.png');
+  background-image: url('/assets/images/blood-splatter.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

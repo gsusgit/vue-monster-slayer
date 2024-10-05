@@ -16,35 +16,40 @@
       <h1>Monster Slayer</h1>
     </header>
     <div id="game">
-      <section id="monster" class="container">
-        <h2>Monster Health</h2>
-        <div class="healthbar">
-          <div class="healthbar__value" :style="monsterBarStyles"></div>
-        </div>
+      <section v-if="!gameStarted" class="container">
+        <button class="start" @click="start">START</button>
       </section>
-      <section id="player" class="container">
-        <h2>Your Health</h2>
-        <div class="healthbar">
-          <div class="healthbar__value" :style="playerBarStyles"></div>
-        </div>
-      </section>
-      <div v-if="gameEnded">
-        <div class="alert">Game Over<br>{{ winner }} wins!</div>
-        <button class="restart" @click="restart">PLAY AGAIN</button>
-      </div>
       <div v-else>
-        <section id="controls" class="container">
-          <button @click="attackMonster">ATTACK</button>
-          <button @click="specialAttack" :disabled="!specialAttackAvailable">SPECIAL ATTACK</button>
-          <button @click="heal" :disabled="!specialAttackAvailable">HEAL</button>
-          <button @click="surrender">SURRENDER</button>
+        <section id="monster" class="container">
+          <h2>Monster Health</h2>
+          <div class="healthbar">
+            <div class="healthbar__value" :style="monsterBarStyles"></div>
+          </div>
         </section>
-        <section v-if="logs.length > 0" id="log" class="container">
-          <h2>Battle Log</h2>
-          <ul>
-            <li v-for="log in logs" :key="log">{{ log }}</li>
-          </ul>
+        <section id="player" class="container">
+          <h2>Your Health</h2>
+          <div class="healthbar">
+            <div class="healthbar__value" :style="playerBarStyles"></div>
+          </div>
         </section>
+        <div v-if="gameEnded">
+          <div class="alert">Game Over<br>{{ winner }} wins!</div>
+          <button class="restart" @click="restart">PLAY AGAIN</button>
+        </div>
+        <div v-else>
+          <section id="controls" class="container">
+            <button @click="attackMonster">ATTACK</button>
+            <button @click="specialAttack" :disabled="!specialAttackAvailable">SPECIAL ATTACK</button>
+            <button @click="heal" :disabled="!specialAttackAvailable">HEAL</button>
+            <button @click="surrender">SURRENDER</button>
+          </section>
+          <section v-if="logs.length > 0" id="log" class="container">
+            <h2>Battle Log</h2>
+            <ul>
+              <li v-for="log in logs" :key="log">{{ log }}</li>
+            </ul>
+          </section>
+        </div>
       </div>
     </div>
   </body>
